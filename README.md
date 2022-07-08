@@ -1,5 +1,6 @@
 # NET_Lab_Project_v0.1.2
-- The algorithm gives common nodes, edges and fused nodes, edges is encoded in the 
+- The algorithm gives common nodes, edges and fused nodes, edges is coded.
+- Also Spectral comparison, Vertex/Edge Overlap comparison and Get Edit Distance comparison algorithms are coded to the the Spectral_VeO_GeD_comparison.py 
 
 # NET_Lab_Project_v0.1.1
 - Defined networkx databases can be manipulatd through directd randomization algorithm coded in generate_randirected_db.py, also can be plotted
