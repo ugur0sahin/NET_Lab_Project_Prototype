@@ -91,10 +91,10 @@ def change_refer(ref,ref_nod,unit_step,node_weight,edge_weight,trial_no):
 #Step-Size should be a unit
 
 if __name__ == '__main__':
-    n_weight,e_weight,s_size=0.5,0.5,15 #Define the random rate
+    n_weight,e_weight,s_size=0.3,0.7,15 #Define the random rate
     print('node_diff_rate: '+str(n_weight) + 'edge_diff_rate:' +str(e_weight) + 'total_step_size'+ str(s_size))
     #trial_code=input('trial_number: ')
-    trial_code=312
+    trial_code=313
     print(os.getcwd())
     database,wire_database=str(os.getcwd())+'/prototype_db.csv',str(os.getcwd())+'/confidence_db.csv'
     directed_db, directed_wired = change_refer(database,wire_database,s_size,n_weight,e_weight,trial_code)
