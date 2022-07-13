@@ -24,7 +24,7 @@ def assign_node(Graph,gene):
 
 # Wiring
 
-wire_database=pd.read_csv('confidence_db.csv',sep=';')
+#wire_database=pd.read_csv('confidence_db.csv',sep=';')
 #print(wire_database.iterrows('InNode'))
 
 class Wire():

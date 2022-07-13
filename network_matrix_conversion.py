@@ -10,12 +10,13 @@ def get_bool_array_from_index(interact_ls,gene_sym_ls):
     return arr
 
 #Get the directed files w/ their paths
-def get_paths(wired_database_path, node_database_path):
+def get_paths(wired_database_path, node_database_path, log=True):
     node_df, wired_df = pd.read_csv(node_database_path, sep=';'), pd.read_csv(wired_database_path, sep=';')
     #Creating a list to obtain labeled colons
     no_nodes, gene_sym_ls,notated_arrays=node_df.shape[0], node_df['Gene_Symb'].values.tolist(), []
-    #print("Gene Symbol List is: " + str(gene_sym_ls))
-    #print('--------------------------------------------------------------------------ALL NODE INTERACTIONS----------------------------------------------------------------------------------------------------------------------------------------------------------')
+    if log:
+        print("Gene Symbol List is: " + str(gene_sym_ls))
+        print('--------------------------------------------------------------------------ALL NODE INTERACTIONS----------------------------------------------------------------------------------------------------------------------------------------------------------')
 
     for objected_node in gene_sym_ls:
         pair_ls=[]
@@ -27,7 +28,8 @@ def get_paths(wired_database_path, node_database_path):
         for index, row in pair_df_Out.iterrows():
             if row['InNode'] == objected_node or row['TermNode'] == objected_node:
                 pair_ls.append(row['InNode'])
-        #print(str(objected_node),pair_ls)
+        if log:
+            print(str(objected_node),pair_ls)
         notated_arrays.append(get_bool_array_from_index(pair_ls,gene_sym_ls))
 
     main_array = np.array(gene_sym_ls, dtype=object)
@@ -39,7 +41,7 @@ def get_paths(wired_database_path, node_database_path):
     return main_array
 
 
-'''
+"""
 if __name__ == '__main__':
-    get_paths(str(os.getcwd())+'/example_dbs/53453_confidence_db',str(os.getcwd())+'/example_dbs/53454_prototype_db')
-'''
+    get_paths(str(os.getcwd())+'/example_dbs/312_confidence_db',str(os.getcwd())+'/example_dbs/312_prototype_db', log=True)
+"""

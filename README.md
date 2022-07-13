@@ -1,3 +1,8 @@
+# NET_Lab_Project_v0.1.3
+- From this version graphlets can be introduced to the library as Object.
+- Defined graphlets can be search inside the bigger Graphs; Subgraphs that are is defined in terms of the size graphlets of interest added to found_list, if they are isomorphically identical like 4-cliques, 3-stars etc...
+- Subgraphs that are isomorph with the outlines of graphlets (like cliques, stars etc..) can be plotted and save as figure as it's identity. 
+
 # NET_Lab_Project_v0.1.2
 - The algorithm gives common nodes, edges and fused nodes, edges is coded.
 - Also Spectral comparison, Vertex/Edge Overlap comparison and Get Edit Distance comparison algorithms are coded to the the Spectral_VeO_GeD_comparison.py 

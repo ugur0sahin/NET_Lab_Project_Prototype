@@ -126,7 +126,7 @@ def spectral_comparison(g_ls):
 
 
 
-
+"""
 if __name__ == '__main__':
     G1_binariy_matrice = get_paths(str(os.getcwd())+'/example_dbs/312_confidence_db',
                                    str(os.getcwd())+'/example_dbs/312_prototype_db')
@@ -138,4 +138,5 @@ if __name__ == '__main__':
 
     graph_edit_distance_score = graph_edit_distance_similarity([G1_Aligned_binariy_matrice, G2_Aligned_binariy_matrice])
 
-    spectral_sim_score = spectral_comparison([G1_Aligned_binariy_matrice, G2_Aligned_binariy_matrice])
+    #spectral_sim_score = spectral_comparison([G1_Aligned_binariy_matrice, G2_Aligned_binariy_matrice])
+"""

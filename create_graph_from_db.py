@@ -1,19 +1,27 @@
+import os
 from prototype_body import *
 
-def generate_graph(db_name):
+
+def get_trial_code_from_filename(file):
+    file_direc=file.split('/')
+    trial_name=file_direc[-1].split('_')[0]
+    return trial_name
+
+def generate_graph(db_name, db_wire):
+    trial_ID=get_trial_code_from_filename(db_name)
     database = pd.read_csv(db_name, sep=';')
-    print(database)
+    #print(database)
     G=nx.Graph() #Define Null Graph
     for index, row in database.iterrows():
         assign_node(G, Gene(row['Gene_Symb'], row['Transcription_Level'], row['CRISPR_KO_Effect'],
                             row['Hotpoint_Mutation'], row['Differentiation_Rate']))
 
-    wire_database = pd.read_csv('confidence_db.csv', sep=';')
+    wire_database = pd.read_csv(db_wire, sep=';')
 
     for index, row in wire_database.iterrows():
         assign_wire(G, Wire(row['InNode'], row['TermNode'], row['confidence'], True))
-    return G
-def plot_generated_graph(G,trial_no):
+    return G, trial_ID
+def plot_generated_graph(G,trial_no,path='', plot_show=True, dpi_chosen=400, name_of_map="/Map_Prototoype"):
     pos = nx.spring_layout(G)
     nx.draw(G, pos)
     nx.draw_networkx_labels(G, pos)
@@ -26,11 +34,15 @@ def plot_generated_graph(G,trial_no):
 
     figure = plt.gcf()
     figure.set_size_inches(15, 10)
-    plt.savefig("Map_Prototoype"+str(trial_no)+".png", dpi=400)
-    plt.show()
-'''
+    plt.savefig(path+name_of_map+str(trial_no)+".png", dpi=dpi_chosen)
+    if plot_show:
+        plt.show()
+    plt.clf(); plt.cla(); plt.close()
+
+"""
 if __name__ == '__main__':
-    defined_db_name= str(os.getcwd())+'/example_dbs/53453_confidence_db' # defined name of the graph genrated db in example 
-    Graph=generate_graph(defined_db_name)
-    plot_generated_graph(Graph,defined_db_name)
-'''
+    defined_db_name= str(os.getcwd())+'/example_dbs/312_prototype_db' # defined name of the graph genrated db in example
+    defined_wire_db_name=str(os.getcwd())+'/example_dbs/312_confidence_db'
+    Graph, trial_ID = generate_graph(defined_db_name,defined_wire_db_name)
+    plot_generated_graph(Graph,312,plot_show=True, path=str(os.getcwd()))
+"""

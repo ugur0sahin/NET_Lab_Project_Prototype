@@ -6,7 +6,6 @@ def get_headline(array):
     return array[0], array[:-1]
 
 # score function should be evaluate raw score to generate an output.
-
 def _score_obtained_vectors(vectorA, vectorB):
     #distance = np.linalg.norm(vectorA - vectorB)
     #print(distance)
@@ -57,7 +56,7 @@ def compare_matrices_from_euclidian(G1,G2):
                 unit_score = _score_obtained_vectors(array_of_interested_G1, array_of_interested_G2)
                 keep_score.append(unit_score)
     return keep_score
-
+"""
 if __name__ == '__main__':
     G1_binariy_matrice = get_paths(str(os.getcwd())+'/example_dbs/312_confidence_db',
                                    str(os.getcwd())+'/example_dbs/312_prototype_db')
@@ -65,6 +64,7 @@ if __name__ == '__main__':
                                    str(os.getcwd()) + '/example_dbs/313_prototype_db')
     G1_Aligned_binariy_matrice, G2_Aligned_binariy_matrice=align_binary_matrices(G1_binariy_matrice,G2_binariy_matrice)
     score=compare_matrices_from_euclidian(G1_Aligned_binariy_matrice,G2_Aligned_binariy_matrice)
-    #print('')
-    #print('---------Euclidian Similarity---------')
-    #print(sum(score)/len(score))
+    print('')
+    print('---------Euclidian Similarity---------')
+    print(sum(score)/len(score))
+"""
