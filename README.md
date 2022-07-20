@@ -1,3 +1,11 @@
+# NET_Lab_Project_v0.1.4
+- In order to form a reindexed egoistic database structure, necessarily algorithms are implemented, through this database strusture (as a dictionary that can save and load through pickle) provide a mobile database to the user.
+- Algorithms are changed to generate database only render the data obtained from the wiring database (randirect_database_generation, create_graph..).
+- Pandas headline colons('InNode')('TermNode') is adjusted to the actual database colon names to get data properly.
+- Actual_Databases (HIPPIE-confidence-075.csv) is added. 
+
+Note: Body code going to execute to reindex database as goistic structure present in the search graphlet file (In #Trial1).  
+
 # NET_Lab_Project_v0.1.3
 - From this version graphlets can be introduced to the library as Object.
 - Defined graphlets can be search inside the bigger Graphs; Subgraphs that are is defined in terms of the size graphlets of interest added to found_list, if they are isomorphically identical like 4-cliques, 3-stars etc...
