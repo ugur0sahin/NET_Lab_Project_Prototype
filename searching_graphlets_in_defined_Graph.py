@@ -92,14 +92,14 @@ if __name__ == '__main__':
     ## Generating Graph from the DB
     ## Import Graph to the Indexing Function
     ## This block do not search graphlets it only reindex the database
-    """
+    
     from reindex_as_egoistic_structure_databases import reindex_dataset_as_ego_structure
     from create_graph_from_db_implemented import generate_graph, plot_generated_graph
     #Although plot_generated function is implemented, it is not going to run
     path = os.getcwd() + "/actual_databases/"
-    Graph_HIPPIE_confidence_075, trial_ID=generate_graph("HIPPIE-confidence-075.csv", trial_ID="Actual_")
+    Graph_HIPPIE_confidence_075, trial_ID=generate_graph(path+"/HIPPIE-confidence-075.csv", trial_ID="Actual_")
     ego_dictionary = reindex_dataset_as_ego_structure(Graph_HIPPIE_confidence_075, save_dict=True, name="Actual_HIPPIE-confidence-075", path="/actual_databases/")
-
+    """
     ##Trial-2
     ##Import Genearated Graph_Not_egoistic_Search
     """
@@ -117,30 +117,67 @@ if __name__ == '__main__':
     print(found_motifs_from_actual)
     
     """
+
     #Trial-3
     ##Defined_egoistic_structure
     # Database is diminished also manuel graph generation processes are takes placed
-    """
+    #Last One 19.07
+    import pickle
     from reindex_as_egoistic_structure_databases import reindex_dataset_as_ego_structure, assign_wire, Wire, pd
-
     wire_database = pd.read_csv(str(os.getcwd()) + '/actual_databases/HIPPIE-confidence-075.csv')
-    wire_database = wire_database.drop(range(100, 95000), axis='index')
-    wire_database.to_csv("wire_database_diminished_Actual", index=True)
+    wire_database_diminished = wire_database.drop(range(10000, 96348), axis='index')
+    wire_database_diminished.to_csv(os.getcwd()+"/actual_databases/wire_database_diminished_Actual", index=True)
+    print(wire_database_diminished)
+    #This is the diminished actual databased no any differentiation (randirect is not executed)
+    Graph_HIPPIE_confidence_075_diminished = nx.Graph()
+    for index, row in wire_database_diminished.iterrows():
+        assign_wire(Graph_HIPPIE_confidence_075_diminished,
+                    Wire(row['Gene Name Interactor A'], row['Gene Name Interactor B'], row['Confidence Value'], True))
+    ego_dictionary_diminished = reindex_dataset_as_ego_structure(Graph_HIPPIE_confidence_075_diminished, save_dict=False,
+                                                      name="HIPPIE-confidence-075_diminished", path="/actual_databases/")
 
-    Graph_HIPPIE_confidence_075 = nx.Graph()
-    for index, row in wire_database.iterrows():
-        assign_wire(Graph_HIPPIE_confidence_075,
+    #Dict database save externally because save_dict=True is not working I don't know why
+    file2 = open(os.getcwd() + "/actual_databases/Graph_HIPPIE_confidence_075_diminished_dictionary_db.pkl", "wb")
+    pickle.dump(ego_dictionary_diminished, file2)
+    file2.close()
+
+    #found_graphlets_diminished = search_Graphlets_in_egoistic_database(ego_dictionary_diminished, Graph_HIPPIE_confidence_075_diminished) #AMAZING
+
+    ## The graph obtained from diminished dataset is formed
+    ## Now we should generate a randirect data
+
+    """
+    import generate_randirected_db_as_main
+
+    defined_db_name, defined_path = os.getcwd()+"/actual_databases/wire_database_diminished_Actual", os.getcwd()
+    Graph_will_be_pruned, trial_ID = generate_graph(defined_db_name)
+    print("-----")
+    generate_randirected_db_as_main.generate_db_name_csv_for_edge_files(Graph_will_be_pruned, trial_ID_or_Name="node_database_diminished_Actual", target_path=defined_path+"/actual_databases/")
+    actual_target_path = os.getcwd()+"/actual_databases/"
+    generate_randirected_db_as_main.change_refer(actual_target_path+"node_database_diminished_Actual", actual_target_path+"wire_database_diminished_Actual",20,0.6,0.4,"/actual_databases/001-HIPPIE")
+
+    wire_database_diminished_pruned = pd.read_csv(actual_target_path+"001-HIPPIE_confidence_db")
+    print(wire_database_diminished_pruned)
+    Graph_HIPPIE_confidence_075_diminished_pruned = nx.Graph()
+    for index, row in wire_database_diminished_pruned.iterrows():
+        assign_wire(Graph_HIPPIE_confidence_075_diminished_pruned,
                     Wire(row['Gene Name Interactor A'], row['Gene Name Interactor B'], row['Confidence Value'], True))
 
-    ego_dictionary = reindex_dataset_as_ego_structure(Graph_HIPPIE_confidence_075, save_dict=False,
-                                                      name="HIPPIE-confidence-075", path="/actual_databases/")
+    ego_dictionary_diminished_pruned = reindex_dataset_as_ego_structure(Graph_HIPPIE_confidence_075_diminished_pruned, save_dict=False,
+                                                      name="Graph_HIPPIE_confidence_075_diminished_pruned", path="/actual_databases/")
+    #Dict database save externally because save_dict=True is not working I don't know why
+    file1 = open(os.getcwd()+"/actual_databases/Graph_HIPPIE_confidence_075_diminished_pruned_dictionary_db.pkl", "wb")
+    pickle.dump(ego_dictionary_diminished_pruned, file1)
+    file1.close()
 
-    found_graphlets = search_Graphlets_in_egoistic_database(ego_dictionary, Graph_HIPPIE_confidence_075) #AMAZING
-
-
+    found_graphlets_diminished_pruned = search_Graphlets_in_egoistic_database(ego_dictionary_diminished_pruned,
+                                                            Graph_HIPPIE_confidence_075_diminished_pruned)  # AMAZING
     """
+
+
     # Trial-3
     ##Defined_egoistic_structure
+    ## Here there is pickle load
     """
     from reindex_as_egoistic_structure_databases import  load_dict_with_pickle, pd, assign_wire, Wire, reindex_dataset_as_ego_structure
 

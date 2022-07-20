@@ -127,6 +127,9 @@ if __name__ != '__main__':
         #plot_generated_graph(G, "Actual_Graph", path=str(os.getcwd()) + '/actual_databases/')
         
     """
+
+    """
+    #Not Defined Trial
     wire_database = pd.read_csv(str(os.getcwd()) + '/actual_databases/HIPPIE-confidence-075.csv')
     print(wire_database)
     Graph_HIPPIE_confidence_075 = nx.Graph()
@@ -135,3 +138,4 @@ if __name__ != '__main__':
                     Wire(row['Gene Name Interactor A'], row['Gene Name Interactor B'], row['Confidence Value'], True))
     print(Graph_HIPPIE_confidence_075)
     # plot_generated_graph(G, "Actual_Graph", path=str(os.getcwd()) + '/actual_databases/')
+    """

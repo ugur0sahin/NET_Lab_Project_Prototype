@@ -14,7 +14,7 @@ def load_dict_with_pickle(path):
 def reindex_dataset_as_ego_structure(Graph_HIPPIE_confidence, save_dict=False, name="egoisticly_reindexed_database_as_dict", path=""):
     node_dict = dict()
     for node in Graph_HIPPIE_confidence.nodes:
-        print(node)
+        #print(node)
         belonged_dict= dict()
         for edge in Graph_HIPPIE_confidence.edges:
             if node in edge:
@@ -35,8 +35,9 @@ def reindex_dataset_as_ego_structure(Graph_HIPPIE_confidence, save_dict=False, n
     if save_dict:
         import pickle
         path_n=str(os.getcwd())+path
-        with open(str(path_n)+str(name)+"_dictionary_db"+'.pkl', 'wb') as f:
-            pickle.dump(node_dict, f)
+        f = open(str(path_n)+str(name)+"_dictionary_db"+'.pkl', 'wb')
+        pickle.dump(node_dict, f)
+        print("This dictionary saved as .pkl format")
 
     return node_dict
 """

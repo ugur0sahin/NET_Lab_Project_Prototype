@@ -11,7 +11,7 @@ def generate_graph(db_wire, db_name=None, trial_ID="?"):
     G = nx.Graph()  # Define Null Graph
 
     if not db_name == None:
-        if trial_ID is "?":
+        if trial_ID == "?":
             trial_ID=get_trial_code_from_filename(db_name)
         database = pd.read_csv(db_name)
         #print(database)
